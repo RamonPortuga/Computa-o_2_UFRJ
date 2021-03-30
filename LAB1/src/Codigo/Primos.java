@@ -9,7 +9,8 @@
  * e comentei as linhas que possibilitam printar os resultados.
  * Acabei deixando só mesmo as comparações com relação ao tempo
  * de execução seguindo um modelo similar ao código que está no
- * github.
+ * github. Optei por manter o loop para que a questão da dife-
+ * -rença.
  */
 package Codigo;
 
@@ -79,8 +80,9 @@ public class Primos {
         Scanner input = new Scanner(System.in);
         long inicio = System.currentTimeMillis();
         for (int n = 10; n <= 10_000; n *= 10) {
-            int[] primos = obterPrimos(n);
-            /*System.out.printf("Há %d primos no intervalo [1, %d].\n",
+        	obterPrimos(n);
+        	/*int[] primos = obterPrimos(n);
+            System.out.printf("Há %d primos no intervalo [1, %d].\n",
                     primos.length, n);*/
         }
         long fim = System.currentTimeMillis();
@@ -88,8 +90,9 @@ public class Primos {
         System.out.println();
         inicio = System.currentTimeMillis();
         for (int n = 10; n <= 10_000; n *= 10) {
-            int[] primos = obterPrimosViaCrivo(n);
-            /*System.out.printf("Há %d primos no intervalo [1, %d].\n",
+        	obterPrimosViaCrivo(n);
+            /*int[] primos = obterPrimosViaCrivo(n);
+            System.out.printf("Há %d primos no intervalo [1, %d].\n",
                     primos.length, n);*/
         }
         fim = System.currentTimeMillis();
