@@ -9,8 +9,7 @@
  * e comentei as linhas que possibilitam printar os resultados.
  * Acabei deixando só mesmo as comparações com relação ao tempo
  * de execução seguindo um modelo similar ao código que está no
- * github. Optei por manter o loop para que a questão da dife-
- * -rença.
+ * github.
  */
 package Codigo;
 
@@ -78,25 +77,24 @@ public class Primos {
     
     public static void main(String [] args){
         Scanner input = new Scanner(System.in);
-        long inicio = System.currentTimeMillis();
+        long inicio;
+        long fim;
         for (int n = 10; n <= 10_000; n *= 10) {
+        	inicio = System.currentTimeMillis();
         	obterPrimos(n);
         	/*int[] primos = obterPrimos(n);
             System.out.printf("Há %d primos no intervalo [1, %d].\n",
                     primos.length, n);*/
-        }
-        long fim = System.currentTimeMillis();
-        System.out.printf("O tempo gasto SEM Crivo foi de: %dms\n", fim - inicio);
-        System.out.println();
-        inicio = System.currentTimeMillis();
-        for (int n = 10; n <= 10_000; n *= 10) {
+        	fim = System.currentTimeMillis();
+        	System.out.printf("O tempo gasto SEM Crivo com N igual a %d foi de: %dms\n", n, fim - inicio);
+        	inicio = System.currentTimeMillis();
         	obterPrimosViaCrivo(n);
-            /*int[] primos = obterPrimosViaCrivo(n);
+        	/*int[] primos = obterPrimosViaCrivo(n);
             System.out.printf("Há %d primos no intervalo [1, %d].\n",
                     primos.length, n);*/
+        	fim = System.currentTimeMillis();
+        	System.out.printf("O tempo gasto COM Crivo com N igual a %d foi de: %dms\n\n", n, fim - inicio);
         }
-        fim = System.currentTimeMillis();
-        System.out.printf("O tempo gasto COM Crivo foi de: %dms\n", fim - inicio);
         input.close();
     }
 }
