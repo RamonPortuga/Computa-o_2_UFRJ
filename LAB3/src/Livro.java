@@ -8,6 +8,7 @@ public class Livro extends Produto {
     private int numeroDePaginas;
 
     public Livro(String nome, String editora) {
+        super(nome, "");
         this.nome = nome;
         this.editora = editora;
     }

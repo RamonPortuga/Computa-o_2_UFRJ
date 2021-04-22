@@ -25,7 +25,8 @@ public class Loja {
     }
 
     protected Loja() {
-        // escrevo código normalmente para o construtor
+        this.lista_usuarios = new ArrayList<>();
+        this.lista_produtos = new ArrayList<>();
     }
 
     public static Loja getInstanciaUnica() {
@@ -33,7 +34,8 @@ public class Loja {
     }
 
     public void limparEstado() {
-        // recria os atributos, ou os limpa...
+        this.lista_usuarios = new ArrayList<>();
+        this.lista_produtos = new ArrayList<>();
     }
 
     /**
@@ -43,11 +45,8 @@ public class Loja {
      * @param quantidadeAIncluir a quantidade que será acrescentada à quantidade existente.
      */
     public void incluirProduto(Produto produto, int quantidadeAIncluir) {
-        int quantidadeFinal = quantidadeAIncluir + quantidadeEmEstoque;
-        produto.setQuantidadeEmEstoque(quantidadeFinal);
+        produto.setQuantidadeEmEstoque(quantidadeAIncluir);
         lista_produtos.add(produto);
-        /*int quantidadeFinal = quantidadeAIncluir + quantidadeEmEstoque;
-        produto.setQuantidadeEmEstoque(quantidadeFinal);*/
     }
 
     public void cadastrarUsuario(Usuario usuario) {
@@ -66,44 +65,19 @@ public class Loja {
      */
     public Recibo efetuarVenda(
             Produto produto, int quantidadeDesejada, Usuario usuario) {
-
-        return null;  // ToDo IMPLEMENT ME!!!
+        lista_usuarios.contains(usuario);
+        boolean existencia_usuario = lista_usuarios.contains(usuario);
+        boolean existencia_produto = lista_produtos.contains(produto);
+        if(existencia_produto == true && existencia_usuario == true){
+            if(quantidadeDesejada > produto.getQuantidadeEmEstoque()){
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
+        return new Recibo(produto, quantidadeDesejada, usuario);
     }
-
-    @Override
-    public boolean equals (Object o){
-        /*
-        if (this == o){
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            return false;
-        }
-         */
-
-        return false;
-    }
-
-    /*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o){
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            return false;
-        }
-        Fracao fracaoAuxiliar = (Fracao) o;
-        fracaoAuxiliar = fracaoAuxiliar.getFracaoGeratriz();
-        Fracao fracao = this;
-
-        fracaoAuxiliar = fracaoAuxiliar.getFracaoGeratriz();
-        fracao = fracao.getFracaoGeratriz();
-
-        return fracao.getNumerador() == fracaoAuxiliar.getNumerador()
-                && fracao.getDenominador() == fracaoAuxiliar.getDenominador()
-                && fracao.getSinal() == fracaoAuxiliar.getSinal();
-    }*/
 
     /**
      * @param produto o produto a ser consultado
@@ -113,8 +87,10 @@ public class Loja {
      *         -1 se o produto não é sequer vendido pela loja
      */
     public int informarQuantidadeEmEstoque(Produto produto) {
+        if (lista_produtos.contains(produto) == false){
+            return -1;
+        }
         this.quantidadeEmEstoque = produto.getQuantidadeEmEstoque();
         return quantidadeEmEstoque;
-        // ToDo IMPLEMENT ME!!!
     }
 }

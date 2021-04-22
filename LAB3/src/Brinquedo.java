@@ -5,7 +5,7 @@ public class Brinquedo extends Produto {
     private int idadeMinimaRecomendada;
 
     public Brinquedo(String descricao) {
-        this.descricao = descricao;
+        super(descricao, "");
     }
 
     public String getMarca() {

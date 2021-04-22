@@ -1,6 +1,6 @@
 public class Produto {
 
-    private int quantidadeEmEstoque = -1;
+    private int quantidadeEmEstoque;
     private String descricao;
     private String urlDaImagem;
     private float preco;
@@ -27,7 +27,7 @@ public class Produto {
         return null;
     }
 
-    public float precoEmReais() {
+    public float getPrecoEmReais() {
         return this.preco;
     }
 
@@ -44,6 +44,6 @@ public class Produto {
     }
 
     public void setQuantidadeEmEstoque(int quantidadeEmEstoque){
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
+        this.quantidadeEmEstoque += quantidadeEmEstoque;
     }
 }
