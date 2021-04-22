@@ -1,4 +1,10 @@
 /**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
+/**
  * Implementa uma loja virtual para produtos de qualquer tipo,
  * desde que tenham descrição, preço e dimensões.
  *
