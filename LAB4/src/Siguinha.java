@@ -12,10 +12,6 @@ public class Siguinha {
 
     Aluno aluno;
 
-    /*Map<String, String> example = new HashMap<String, String>();*/
-
-    /*Map <Aluno, Integer> = new HashMap <Aluno, Integer>();*/
-
     /*1) Na classe Siguinha, acrescenta uma estrutura para armazenar alunos.
      (Sugestão: use HashMap)*/
     Map <Long, Aluno> alunoByDre = new HashMap<>();

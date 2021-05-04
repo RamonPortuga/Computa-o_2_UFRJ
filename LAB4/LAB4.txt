@@ -17,11 +17,11 @@
    disciplina em um determinado período lecionada por um determinado professor.
    A classe Turma deve ter os seguintes métodos públicos:
 
-   void inscreverAluno(Aluno aluno)
+   void inscreverAluno(Aluno aluno) -- OK!
 
-   void atribuirMediaFinal(long dre, float nota)
+   void atribuirMediaFinal(long dre, float nota) -- OK!
 
-   float obterMediaFinal(long dre)
+   float obterMediaFinal(long dre) -- OK!
 
-   String listarAlunos()
+   String listarAlunos() -- OK!
 
