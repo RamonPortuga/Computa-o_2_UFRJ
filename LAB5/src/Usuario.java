@@ -20,15 +20,6 @@ public class Usuario implements Comparable<Usuario> {
         else if (calculador instanceof CalculadorIntersecaoIngenuo){
             calculadorIntersecao = new CalculadorIntersecaoIngenuo();
         }
-        /*if(calculador instanceof CalculadorIntersecaoEsperto){
-            CalculadorIntersecaoEsperto esperto = new CalculadorIntersecaoEsperto();
-        }
-        else if (calculador instanceof CalculadorIntersecaoViaBuscaBinaria){
-            CalculadorIntersecaoViaBuscaBinaria buscaBinaria = new CalculadorIntersecaoViaBuscaBinaria();
-        }
-        else if (calculador instanceof  CalculadorIntersecaoIngenuo){
-            CalculadorIntersecaoIngenuo ingenuo = new CalculadorIntersecaoIngenuo();
-        }*/
     }
 
     public int getId() {

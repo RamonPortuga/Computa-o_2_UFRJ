@@ -14,9 +14,6 @@ public class CalculadorIntersecaoIngenuo implements CalculadorIntersecao {
                 if(lista1.get(i).compareTo(lista2.get(j)) == 0){
                     intersecao.add(lista1.get(i));
                 }
-                /*if (lista1.get(i) == lista2.get(j)){
-                    break;
-                }*/
             }
         }
         return intersecao;

@@ -4,13 +4,18 @@ import java.util.List;
 
 public class OutroProjeto {
     public static void encontrarPar(List<Integer> lista, int k){
+        boolean achou = false;
         Collections.sort(lista);
         for (int i = 0; i < lista.size(); i++){
             int numeroProcurado = k - lista.get(i);
             if(lista.indexOf(numeroProcurado) >= 0){
                 System.out.println(lista.get(i) + "\t" + numeroProcurado);
+                achou = true;
                 break;
             }
+        }
+        if(!achou){
+            System.out.println("Não existe Par referente ao número dado");
         }
     }
     public static void encontrarCaracterMaisFrequente(String string){
@@ -29,11 +34,14 @@ public class OutroProjeto {
         }
         System.out.printf("%c\t%d\n", caracterComMaiorOcorrencia, maiorOcorrencia);
     }
+
     public static void main (String [] args){
-        System.out.println("Teste de encontrarCaracterMaisFrequente:");
         String string = "arara";
+        System.out.println("Teste de encontrarCaracterMaisFrequente na palavra: " + string);
         encontrarCaracterMaisFrequente (string);
-        System.out.println("\nTeste de encontrarPar:");
+
+        int k = 34;
+        System.out.println("\nTeste de encontrarPar com k igual a: " + k);
         List <Integer> lista = new ArrayList <Integer>();
         lista.add(1);
         lista.add(5);
@@ -42,6 +50,6 @@ public class OutroProjeto {
         lista.add(44);
         lista.add(12);
         lista.add(18);
-        encontrarPar(lista,34);
+        encontrarPar(lista, k);
     }
 }
