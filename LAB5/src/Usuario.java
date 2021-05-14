@@ -1,3 +1,8 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
 import java.util.List;
 
 public class Usuario implements Comparable<Usuario> {
