@@ -22,7 +22,6 @@ public class Pacotinho {
      * @param quantFigurinhas a quantidade de figurinhas a constar no pacotinho
      */
     public Pacotinho(Repositorio repo, int quantFigurinhas) {
-        //quantFigurinhas = repo.getTotalFigurinhas();
         Random gerador = new Random();
 
         figurinhas = new Figurinha[quantFigurinhas];

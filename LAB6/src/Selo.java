@@ -1,8 +1,10 @@
-public class Selo{
+import java.awt.*;
+
+public class Selo implements Colecionavel{
     private String pais;
     private float valorNominal;
 
-    /*@Override
+    @Override
     public Image getImagem() {
         return null;
     }
@@ -10,7 +12,7 @@ public class Selo{
     @Override
     public int getPosicao() {
         return 0;
-    }*/
+    }
 
     public float getValorNominal(){
         return this.valorNominal;

@@ -1,4 +1,5 @@
-1) Faça todos os unit tests passarem.
+1) Faça todos os unit tests passarem.                   -   QUASE FEITO!!!
+Status: Falta consertar o autoCompletar();
 
 2) Crie uma interface Colecionavel com os métodos       -   FEITO!!!
       Image getImagem()
