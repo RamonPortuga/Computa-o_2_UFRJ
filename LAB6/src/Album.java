@@ -14,6 +14,7 @@ public class Album {
     private final int quantItensPorPacotinho;
 
     private List<Figurinha> figurinhasColadas;  // direct addressing
+    //private List<Figurinha> figurinhasFaltantes;
     private int quantFigurinhasColadas;
 
     // poderíamos fazer novamente direct addressing para as repetidas,
@@ -57,6 +58,9 @@ public class Album {
 
             } else {
                 // item inédito
+                /*if (this.figurinhasColadas.set(posicao, fig) != null){
+
+                }*/
                 this.figurinhasColadas.set(posicao, fig);
                 this.quantFigurinhasColadas++;
             }
@@ -64,15 +68,31 @@ public class Album {
     }
 
     public Figurinha getItemColado(int posicao) {
-        return null;  // ToDo IMPLEMENT ME!!!
+        Figurinha figurinha = (Figurinha) this.figurinhasColadas.get(posicao);
+        return figurinha;  // ToDo IMPLEMENT ME!!!
     }
 
     public boolean possuiItemColado(int posicao) {
-        return false;  // ToDo IMPLEMENT ME!!!
+        if (posicao > getTamanho() || posicao < 0){
+            return false;
+        }
+        if (this.figurinhasColadas.get(posicao) != null){
+            return true;
+        }
+        return false;
     }
 
     public boolean possuiItemRepetido(int posicao) {
-        return false;  // ToDo IMPLEMENT ME!!!
+        int contRepetidas = 0;
+        if (this.contRepetidasByPosicao.containsKey(posicao)){
+            contRepetidas = contRepetidasByPosicao.get(posicao);
+        }
+        if (contRepetidas > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public int getTamanho() {
@@ -80,14 +100,6 @@ public class Album {
     }
 
     public int getQuantItensColados() {
-//        int contador = 0;
-//        for (Figurinha fig : this.figurinhasColadas) {
-//            if (fig != null) {
-//                contador++;
-//            }
-//        }
-//        return contador;
-
         // melhor jeito: atributo!
         return this.quantFigurinhasColadas;
     }
@@ -97,7 +109,21 @@ public class Album {
     }
 
     public void autoCompletar() {
-        // ToDo IMPLEMENT ME!!!
+        List<Figurinha> todasAsFigurinhas = new ArrayList<>();
+        todasAsFigurinhas = this.repositorio.getTodasAsFigurinhas();
+        if (getQuantItensColados() == 0){
+            System.out.println("Ei");
+        }
+        else{
+            for (int i = 1; i < getTamanho(); i++){
+                if(possuiItemColado(i) == false){
+                    Figurinha fig = (Figurinha) todasAsFigurinhas.get(i);
+                    this.figurinhasColadas.set(i, fig);
+                    this.quantFigurinhasColadas++;
+                }
+                System.out.println("i: " + i);
+            }
+        }
     }
 
     private Image getImagem(int posicao) {

@@ -92,6 +92,7 @@ public class AlbumTest {
             Pacotinho novoPacotinho = new Pacotinho(
                     this.repositorioFigurinhas, ITENS_POR_PACOTE);  // aleatório
             albumFigurinhas.receberNovoPacotinho(novoPacotinho);
+            System.out.println("Ei");
         }
 
         // sanity check

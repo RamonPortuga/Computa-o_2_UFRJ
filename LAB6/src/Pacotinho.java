@@ -1,9 +1,17 @@
+import java.util.Random;
+
 public class Pacotinho {
 
+    private static final String PREFIXO_URL_IMAGENS = "http://www.nossoalbum.com.br/imagens/";
 
+    private Figurinha [] figurinhas;
 
     public Pacotinho(Repositorio repo, int[] posicoesDesejadas) {
-        // ToDo IMPLEMENT ME!!!
+        figurinhas = new Figurinha[posicoesDesejadas.length];
+        for (int i = 0; i < posicoesDesejadas.length; i++){
+            figurinhas[i] = new Figurinha(posicoesDesejadas[i],
+                    PREFIXO_URL_IMAGENS + posicoesDesejadas[i]);
+        }
     }
 
     /**
@@ -14,10 +22,18 @@ public class Pacotinho {
      * @param quantFigurinhas a quantidade de figurinhas a constar no pacotinho
      */
     public Pacotinho(Repositorio repo, int quantFigurinhas) {
-        // ToDo IMPLEMENT ME!!!
+        //quantFigurinhas = repo.getTotalFigurinhas();
+        Random gerador = new Random();
+
+        figurinhas = new Figurinha[quantFigurinhas];
+
+        for (int i = 0; i < quantFigurinhas; i++){
+            int posicaoGerada = gerador.nextInt(quantFigurinhas);
+            figurinhas[i] = new Figurinha(posicaoGerada, PREFIXO_URL_IMAGENS + i);
+        }
     }
 
     public Figurinha[] getFigurinhas() {
-        return null;  // ToDo IMPLEMENT ME!!!
+        return figurinhas;
     }
 }
