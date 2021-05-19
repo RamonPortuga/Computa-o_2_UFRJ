@@ -7,9 +7,9 @@ public class Repositorio {
 
     private List<Figurinha> todasAsFigurinhas;
 
-    public Repositorio(String sufixoUrlImagens, int quantColecionaveis) {
-        todasAsFigurinhas = new ArrayList<>(quantColecionaveis);
-        for (int i = 1; i <= quantColecionaveis; i++) {
+    public Repositorio(String sufixoUrlImagens, int quantFigurinhas) {
+        todasAsFigurinhas = new ArrayList<>(quantFigurinhas);
+        for (int i = 1; i <= quantFigurinhas; i++) {
             Figurinha fig = new Figurinha(i, PREFIXO_URL_IMAGENS + sufixoUrlImagens);
             todasAsFigurinhas.add(fig);
         }
@@ -19,7 +19,9 @@ public class Repositorio {
         return this.todasAsFigurinhas.size();
     }
 
-    public List<Figurinha> getTodasAsFigurinhas() {
-        return todasAsFigurinhas;
+    public Figurinha getFigurinha(int pos){
+        if(todasAsFigurinhas.size() + 1 <= pos || pos <= 0)
+            throw new ArrayIndexOutOfBoundsException("Informe uma posição valida.");
+        return todasAsFigurinhas.get(pos-1);
     }
 }

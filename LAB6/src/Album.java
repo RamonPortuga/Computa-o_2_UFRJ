@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Album <T extends Colecionavel>{
+public class Album {
 
     public static final int PERCENTUAL_MINIMO_PARA_AUTO_COMPLETAR = 90;
 
@@ -13,9 +13,11 @@ public class Album <T extends Colecionavel>{
     private final Repositorio repositorio;
     private final int quantItensPorPacotinho;
 
-    private List<Figurinha> colecionaveisColados;  // direct addressing
-    private int quantColecionaveisColados;
+    private List<Figurinha> figurinhasColadas;  // direct addressing
+    private int quantFigurinhasColadas;
 
+    // poderíamos fazer novamente direct addressing para as repetidas,
+    // mas vamos usar um HashMap aqui só para treinarmos
     private Map<Integer, Integer> contRepetidasByPosicao;
 
     public Album(Repositorio repositorio, int quantItensPorPacotinho) {
@@ -23,12 +25,12 @@ public class Album <T extends Colecionavel>{
         this.quantItensPorPacotinho = quantItensPorPacotinho;
 
         int tamanhoFisicoDaLista = getTamanho() + 1;
-        this.colecionaveisColados = new ArrayList<>(tamanhoFisicoDaLista);
+        this.figurinhasColadas = new ArrayList<>(tamanhoFisicoDaLista);
         // inicializa as posições com nulls, para poder acessá-las diretamente
         for (int i = 0; i < tamanhoFisicoDaLista; i++) {
-            this.colecionaveisColados.add(null);
+            this.figurinhasColadas.add(null);
         }
-        this.quantColecionaveisColados = 0;
+        this.quantFigurinhasColadas = 0;
 
         this.contRepetidasByPosicao = new HashMap<>();
     }
@@ -36,24 +38,24 @@ public class Album <T extends Colecionavel>{
     public void receberNovoPacotinho(Pacotinho pacotinho) {
         Figurinha[] figurinhasDoPacotinho = pacotinho.getFigurinhas();
         if (figurinhasDoPacotinho.length != this.quantItensPorPacotinho) {
-            return;  // melhor ainda: lançaria uma checked exception
+            return; // melhor ainda: lançaria uma checked exception
         }
 
-        for (Figurinha fig : pacotinho.getFigurinhas()) {
+        for (Figurinha fig : figurinhasDoPacotinho) {
             final int posicao = fig.getPosicao();
             if (possuiItemColado(posicao)) {
                 int contRepetidas = this.contRepetidasByPosicao.getOrDefault(posicao, 0);
                 this.contRepetidasByPosicao.put(posicao, contRepetidas + 1);
 
             } else {
-                this.colecionaveisColados.set(posicao, fig);
-                this.quantColecionaveisColados++;
+                this.figurinhasColadas.set(posicao, fig);
+                this.quantFigurinhasColadas++;
             }
         }
     }
 
     public Figurinha getItemColado(int posicao) {
-        Figurinha figurinha = (Figurinha) this.colecionaveisColados.get(posicao);
+        Figurinha figurinha = (Figurinha) this.figurinhasColadas.get(posicao);
         return figurinha;
     }
 
@@ -61,7 +63,7 @@ public class Album <T extends Colecionavel>{
         if (posicao > getTamanho() || posicao < 0){
             return false;
         }
-        if (this.colecionaveisColados.get(posicao) != null){
+        if (this.figurinhasColadas.get(posicao) != null){
             return true;
         }
         return false;
@@ -85,7 +87,7 @@ public class Album <T extends Colecionavel>{
     }
 
     public int getQuantItensColados() {
-        return this.quantColecionaveisColados;
+        return this.quantFigurinhasColadas;
     }
 
     public int getQuantItensFaltantes() {
@@ -93,41 +95,16 @@ public class Album <T extends Colecionavel>{
     }
 
     public void autoCompletar() {
-        // ToDo IMPLEMENT ME!!!
-        /*List<Figurinha> todasAsFigurinhas = new ArrayList<>();
-        todasAsFigurinhas = this.repositorio.getTodasAsFigurinhas();
-        if(this.colecionaveisColados.isEmpty() == true){
+        if(quantFigurinhasColadas == 0)
+            return;
 
-        }
-        else{
-        //if(this.colecionaveisColados.isEmpty() == true) {
-            for (int i = 1; i < getTamanho(); i++){
-                boolean aux = possuiItemColado(i);
-                //System.out.println(aux);
-                System.out.println(colecionaveisColados.get(i));
-                if(this.colecionaveisColados.get(i) == null){
-                    Figurinha fig = (Figurinha) todasAsFigurinhas.get(i);
-                    this.colecionaveisColados.set(i, fig);
-                    this.quantcolecionaveisColados++;
-                    System.out.println("Ei");
-                }
+        for (int i = 1; i < figurinhasColadas.size(); i++) {
+            if(figurinhasColadas.get(i) == null)
+            {
+                figurinhasColadas.set(i, repositorio.getFigurinha(i));
+                quantFigurinhasColadas++;
             }
-        }*/
-        /*List<Figurinha> todasAsFigurinhas = new ArrayList<>();
-        todasAsFigurinhas = this.repositorio.getTodasAsFigurinhas();
-        if (getQuantItensColados() == 0){
-            System.out.println("Ei");
         }
-        else{
-            for (int i = 1; i < getTamanho(); i++){
-                if(possuiItemColado(i) == false){
-                    Figurinha fig = (Figurinha) todasAsFigurinhas.get(i);
-                    this.colecionaveisColados.set(i, fig);
-                    this.quantcolecionaveisColados++;
-                }
-                System.out.println("i: " + i);
-            }
-        }*/
     }
 
     private Image getImagem(int posicao) {
@@ -135,5 +112,4 @@ public class Album <T extends Colecionavel>{
                 ? this.getItemColado(posicao).getImagem()
                 : IMAGEM_PADRAO_PARA_POSICAO_VAZIA;
     }
-
 }

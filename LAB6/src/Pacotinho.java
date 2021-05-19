@@ -1,16 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Pacotinho {
 
-    private static final String PREFIXO_URL_IMAGENS = "http://www.nossoalbum.com.br/imagens/";
-
-    private Figurinha [] figurinhas;
+    private List<Figurinha> figurinhas;
 
     public Pacotinho(Repositorio repo, int[] posicoesDesejadas) {
-        figurinhas = new Figurinha[posicoesDesejadas.length];
-        for (int i = 0; i < posicoesDesejadas.length; i++){
-            figurinhas[i] = new Figurinha(posicoesDesejadas[i],
-                    PREFIXO_URL_IMAGENS + posicoesDesejadas[i]);
+        figurinhas = new ArrayList<Figurinha>();
+        for( Integer posicao : posicoesDesejadas ){
+            figurinhas.add(repo.getFigurinha(posicao));
         }
     }
 
@@ -22,17 +21,20 @@ public class Pacotinho {
      * @param quantFigurinhas a quantidade de figurinhas a constar no pacotinho
      */
     public Pacotinho(Repositorio repo, int quantFigurinhas) {
-        Random gerador = new Random();
 
-        figurinhas = new Figurinha[quantFigurinhas];
-
-        for (int i = 0; i < quantFigurinhas; i++){
-            int posicaoGerada = gerador.nextInt(quantFigurinhas);
-            figurinhas[i] = new Figurinha(posicaoGerada, PREFIXO_URL_IMAGENS + i);
+        Integer tamanho = repo.getTotalFigurinhas();
+        figurinhas = new ArrayList<Figurinha>();
+        Random rand = new Random();
+        int n;
+        for(int i = 0; i < quantFigurinhas; i++ ){
+            n = rand.nextInt(tamanho-1) + 1;
+            figurinhas.add(repo.getFigurinha(n));
         }
     }
 
     public Figurinha[] getFigurinhas() {
-        return figurinhas;
+        Figurinha[] figurinhasArray = new Figurinha[figurinhas.size()];
+        figurinhas.toArray(figurinhasArray);
+        return figurinhas.toArray(figurinhasArray);
     }
 }
