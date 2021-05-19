@@ -1,0 +1,5 @@
+testarGetContFigurinhas				-->	getQuanItensColados()
+testarPossuiFigurinhaParaFigurinhasExistentes	-->	possuiItemColado()
+testarPossuiRepetidaParaFigurinhaRepetida()	-->	possuiItemRepetido()
+testarGetItemColado()				-->	getItemColado()
+testarAutoCompletar()			-->	getQuantItensFaltantes()
