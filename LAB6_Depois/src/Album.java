@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Album {
+public class Album <T extends Colecionavel> {
 
     public static final int PERCENTUAL_MINIMO_PARA_AUTO_COMPLETAR = 90;
 
@@ -13,7 +13,7 @@ public class Album {
     private final Repositorio repositorio;
     private final int quantColecionaveisPorPacotinho;
 
-    private List<Colecionavel> colecionaveisColados;  // direct addressing
+    private List<T> colecionaveisColados;  // direct addressing
     private int quantColecionaveisColados;
 
     private Map<Integer, Integer> contRepetidasByPosicao;
@@ -34,27 +34,83 @@ public class Album {
     }
 
     public void receberNovoPacotinho(Pacotinho pacotinho) {
-        Figurinha[] figurinhasDoPacotinho = pacotinho.getFigurinhas();
-        if (figurinhasDoPacotinho.length != this.quantColecionaveisPorPacotinho) {
+        T[] colecionaveisDoPacotinho = (T[]) pacotinho.getFigurinhas();
+        if (colecionaveisDoPacotinho.length != this.quantColecionaveisPorPacotinho) {
             return;
         }
 
-        for (Figurinha fig : figurinhasDoPacotinho) {
-            final int posicao = fig.getPosicao();
+        for (int i = 0; i < colecionaveisDoPacotinho.length; i++) {
+            final int posicao = colecionaveisDoPacotinho[i].getPosicao();
             if (possuiItemColado(posicao)) {
                 int contRepetidas = this.contRepetidasByPosicao.getOrDefault(posicao, 0);
                 this.contRepetidasByPosicao.put(posicao, contRepetidas + 1);
 
             } else {
-                this.colecionaveisColados.set(posicao, fig);
+                this.colecionaveisColados.set(posicao, colecionaveisDoPacotinho[i]);
                 this.quantColecionaveisColados++;
             }
         }
     }
 
-    public Figurinha getItemColado(int posicao) {
-        Figurinha figurinha = (Figurinha) this.colecionaveisColados.get(posicao);
-        return figurinha;
+    /*public void receberNovoPacotinho(Pacotinho pacotinho) {
+        T colecionaveisDoPacotinho[] = (T[]) pacotinho.getFigurinhas();
+        if (colecionaveisDoPacotinho.length != this.quantItensPorPacotinho) {
+            return;  // melhor ainda: lançaria uma checked exception
+        }
+
+        for (int i =0; i<colecionaveisDoPacotinho.length; i++ ) {
+            final int posicao = colecionaveisDoPacotinho[i].getPosicao();
+            if (possuiItemColado(posicao)) {
+                // adiciona como repetida
+
+                // jeito pior
+//                Integer contRepetidas = this.contRepetidasByPosicao.get(posicao);
+//                this.contRepetidasByPosicao.put(
+//                        posicao, contRepetidas == null ? 1 : contRepetidas + 1);
+
+                // jeito mais elegante: getOrDefault
+                int contRepetidas = this.contRepetidasByPosicao.getOrDefault(posicao, 0);
+                this.contRepetidasByPosicao.put(posicao, contRepetidas + 1);
+
+            } else {
+                // item inédito
+                this.colecionaveisColados.set(posicao, colecionaveisDoPacotinho[i]);
+                this.quantColecionaveisColadas++;
+            }
+        }
+    }*/
+
+    /*public Figurinha getItemColado(int posicao) {
+        //Obs: For Reach é melhor para percorrer, mas por algum motivo,
+        //for não funciona. Na dúvida, melhor ir no certo
+        for (T colecionavel: colecionaveisColados){
+            if (colecionavel != null){
+                if (colecionavel.getPosicao() == posicao){
+                    return colecionavel;
+                }
+            }
+        }
+        return null;*/
+        /*for (int i = 0; i < colecionaveisColados.size(); i++){
+            if (colecionaveisColados.get(i) != null){
+                if (colecionaveisColados.get(i).getPosicao() == posicao){
+                    return (Colecionavel) colecionaveisColados.get(i);
+                }
+            }
+        }
+        return null;
+    }*/
+
+    //Pq raios esse agora funcionou e o outro não?
+    public T getItemColado (int posicao) {
+        for(T colecionavel : colecionaveisColados){
+            if(colecionavel != null) {
+                if (colecionavel.getPosicao() == posicao) {
+                    return colecionavel;
+                }
+            }
+        }
+        return null;
     }
 
     public boolean possuiItemColado(int posicao) {
@@ -92,7 +148,7 @@ public class Album {
         return getTamanho() - getQuantItensColados();
     }
 
-    public void autoCompletar() {
+    /*public void autoCompletar() {
         if(quantColecionaveisColados == 0)
             return;
 
@@ -102,7 +158,26 @@ public class Album {
                 quantColecionaveisColados++;
             }
         }
-    }
+    }*/
+
+    /*public void autoCompletar() {
+        if((getQuantItensColados()*100/getTamanho()>=PERCENTUAL_MINIMO_PARA_AUTO_COMPLETAR)){
+            for(int i=1; i<getTamanho(); i++){
+                if(colecionaveisColados.get(i)==null) {
+                    if(colecionaveisColados instanceof  Figurinha)
+                        colecionaveisColados.set(i,(T)new Figurinha(i, ""));
+                   /* if(colecionaveisColados instanceof  Selo) {
+                        Random r= new Random();
+                        colecionaveisColados.set(i, (T)new Selo(i,"g", "Brasil", r.nextFloat()));
+                    }*/
+
+                    /*this.quantColecionaveisColados++;
+                    System.out.println(i);
+                }
+            }
+
+        }
+    }*/
 
     private Image getImagem(int posicao) {
         return possuiItemColado(posicao)
