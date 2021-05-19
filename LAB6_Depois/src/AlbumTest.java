@@ -127,4 +127,11 @@ public class AlbumTest {
                 0, albumFigurinhas.getQuantItensColados());
     }
 
+    @Test
+    public void testarInstanciasDeItensColecionaveis(){
+        /*Adicione um unit test (um único método) onde você terá duas instâncias de Album:
+   uma para Selos e outra para Figurinhas, fazendo algum teste muito básico
+   com cada instância dessas.*/
+    }
+
 }

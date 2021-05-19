@@ -123,7 +123,7 @@ public class AlbumTest {
         popularAlbum(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8});
 
         assertEquals("Pacotes de tamanho distinto do informado na construção " +
-                "do álbum devem ser rejeitados",
+                        "do álbum devem ser rejeitados",
                 0, albumFigurinhas.getQuantItensColados());
     }
 
