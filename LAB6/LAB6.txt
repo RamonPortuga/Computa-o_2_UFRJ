@@ -11,7 +11,7 @@ Status: Falta consertar o autoCompletar();
    e que implemente a interface Colecionavel
 
 4) Adapte a classe Album para poder colecionar qualquer coisa que seja Colecionavel
-   (PS.: Os testes têm que continuar passando.)
+   (PS.: Os testes têm que continuar passando.)             -   FEITO!!!
 
 ------> CHECKPOINT: Envie o código fazendo funcionar até aqui.
 ------> Via e-mail, mande as classes (zipadas, possivelmente), indicando
