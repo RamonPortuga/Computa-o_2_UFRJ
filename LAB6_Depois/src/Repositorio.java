@@ -1,27 +1,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Repositorio {
+public class Repositorio <T extends Colecionavel> {
 
     private static final String PREFIXO_URL_IMAGENS = "http://www.nossoalbum.com.br/imagens/";
 
-    private List<Figurinha> todasAsFigurinhas;
+    private List<T> todosOsColecionaveis;
 
-    public Repositorio(String sufixoUrlImagens, int quantFigurinhas) {
-        todasAsFigurinhas = new ArrayList<>(quantFigurinhas);
-        for (int i = 1; i <= quantFigurinhas; i++) {
-            Figurinha fig = new Figurinha(i, PREFIXO_URL_IMAGENS + sufixoUrlImagens);
-            todasAsFigurinhas.add(fig);
+    public Repositorio(String sufixoUrlImagens, int quantColecinaveis) {
+        todosOsColecionaveis = new ArrayList<>(quantColecinaveis);
+        for (int i = 1; i <= quantColecinaveis; i++) {
+            Colecionavel fig = new Figurinha(i, PREFIXO_URL_IMAGENS + sufixoUrlImagens);
+            todosOsColecionaveis.add((T) fig);
         }
     }
 
-    public int getTotalFigurinhas() {
-        return this.todasAsFigurinhas.size();
+    public int getTotalColecionavel() {
+        return this.todosOsColecionaveis.size();
     }
 
-    public Figurinha getFigurinha(int pos){
-        if(todasAsFigurinhas.size() + 1 <= pos || pos <= 0)
+    public Colecionavel getColecionavel(int pos){
+        if(todosOsColecionaveis.size() + 1 <= pos || pos <= 0)
             throw new ArrayIndexOutOfBoundsException("Informe uma posição valida.");
-        return todasAsFigurinhas.get(pos-1);
+        return todosOsColecionaveis.get(pos - 1);
     }
 }

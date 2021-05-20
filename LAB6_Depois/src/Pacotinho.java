@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Pacotinho {
+public class Pacotinho <T extends Colecionavel>{
 
-    private List<Figurinha> figurinhas;
+    private List<T> colecionaveis;
 
     public Pacotinho(Repositorio repo, int[] posicoesDesejadas) {
-        figurinhas = new ArrayList<Figurinha>();
+        colecionaveis = new ArrayList<T>();
         for( Integer posicao : posicoesDesejadas ){
-            figurinhas.add(repo.getFigurinha(posicao));
+            colecionaveis.add((T) repo.getColecionavel(posicao));
         }
     }
 
@@ -22,19 +22,19 @@ public class Pacotinho {
      */
     public Pacotinho(Repositorio repo, int quantFigurinhas) {
 
-        Integer tamanho = repo.getTotalFigurinhas();
-        figurinhas = new ArrayList<Figurinha>();
+        Integer tamanho = repo.getTotalColecionavel();
+        colecionaveis = new ArrayList<T>();
         Random rand = new Random();
         int n;
         for(int i = 0; i < quantFigurinhas; i++ ){
             n = rand.nextInt(tamanho-1) + 1;
-            figurinhas.add(repo.getFigurinha(n));
+            colecionaveis.add((T) repo.getColecionavel(n));
         }
     }
 
     public Figurinha[] getFigurinhas() {
-        Figurinha[] figurinhasArray = new Figurinha[figurinhas.size()];
-        figurinhas.toArray(figurinhasArray);
-        return figurinhas.toArray(figurinhasArray);
+        Figurinha[] figurinhasArray = new Figurinha[colecionaveis.size()];
+        colecionaveis.toArray(figurinhasArray);
+        return colecionaveis.toArray(figurinhasArray);
     }
 }

@@ -52,55 +52,6 @@ public class Album <T extends Colecionavel> {
         }
     }
 
-    /*public void receberNovoPacotinho(Pacotinho pacotinho) {
-        T colecionaveisDoPacotinho[] = (T[]) pacotinho.getFigurinhas();
-        if (colecionaveisDoPacotinho.length != this.quantItensPorPacotinho) {
-            return;  // melhor ainda: lançaria uma checked exception
-        }
-
-        for (int i =0; i<colecionaveisDoPacotinho.length; i++ ) {
-            final int posicao = colecionaveisDoPacotinho[i].getPosicao();
-            if (possuiItemColado(posicao)) {
-                // adiciona como repetida
-
-                // jeito pior
-//                Integer contRepetidas = this.contRepetidasByPosicao.get(posicao);
-//                this.contRepetidasByPosicao.put(
-//                        posicao, contRepetidas == null ? 1 : contRepetidas + 1);
-
-                // jeito mais elegante: getOrDefault
-                int contRepetidas = this.contRepetidasByPosicao.getOrDefault(posicao, 0);
-                this.contRepetidasByPosicao.put(posicao, contRepetidas + 1);
-
-            } else {
-                // item inédito
-                this.colecionaveisColados.set(posicao, colecionaveisDoPacotinho[i]);
-                this.quantColecionaveisColadas++;
-            }
-        }
-    }*/
-
-    /*public Figurinha getItemColado(int posicao) {
-        //Obs: For Reach é melhor para percorrer, mas por algum motivo,
-        //for não funciona. Na dúvida, melhor ir no certo
-        for (T colecionavel: colecionaveisColados){
-            if (colecionavel != null){
-                if (colecionavel.getPosicao() == posicao){
-                    return colecionavel;
-                }
-            }
-        }
-        return null;*/
-        /*for (int i = 0; i < colecionaveisColados.size(); i++){
-            if (colecionaveisColados.get(i) != null){
-                if (colecionaveisColados.get(i).getPosicao() == posicao){
-                    return (Colecionavel) colecionaveisColados.get(i);
-                }
-            }
-        }
-        return null;
-    }*/
-
     //Pq raios esse agora funcionou e o outro não?
     public T getItemColado (int posicao) {
         for(T colecionavel : colecionaveisColados){
@@ -137,7 +88,7 @@ public class Album <T extends Colecionavel> {
     }
 
     public int getTamanho() {
-        return this.repositorio.getTotalFigurinhas();
+        return this.repositorio.getTotalColecionavel();
     }
 
     public int getQuantItensColados() {
@@ -148,17 +99,17 @@ public class Album <T extends Colecionavel> {
         return getTamanho() - getQuantItensColados();
     }
 
-    /*public void autoCompletar() {
+    public void autoCompletar() {
         if(quantColecionaveisColados == 0)
             return;
 
         for (int i = 1; i < colecionaveisColados.size(); i++) {
             if(colecionaveisColados.get(i) == null) {
-                colecionaveisColados.set(i, repositorio.getFigurinha(i));
+                colecionaveisColados.set(i, (T) repositorio.getColecionavel(i));
                 quantColecionaveisColados++;
             }
         }
-    }*/
+    }
 
     /*public void autoCompletar() {
         if((getQuantItensColados()*100/getTamanho()>=PERCENTUAL_MINIMO_PARA_AUTO_COMPLETAR)){
