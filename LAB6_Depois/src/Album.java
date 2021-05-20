@@ -111,25 +111,6 @@ public class Album <T extends Colecionavel> {
         }
     }
 
-    /*public void autoCompletar() {
-        if((getQuantItensColados()*100/getTamanho()>=PERCENTUAL_MINIMO_PARA_AUTO_COMPLETAR)){
-            for(int i=1; i<getTamanho(); i++){
-                if(colecionaveisColados.get(i)==null) {
-                    if(colecionaveisColados instanceof  Figurinha)
-                        colecionaveisColados.set(i,(T)new Figurinha(i, ""));
-                   /* if(colecionaveisColados instanceof  Selo) {
-                        Random r= new Random();
-                        colecionaveisColados.set(i, (T)new Selo(i,"g", "Brasil", r.nextFloat()));
-                    }*/
-
-                    /*this.quantColecionaveisColados++;
-                    System.out.println(i);
-                }
-            }
-
-        }
-    }*/
-
     private Image getImagem(int posicao) {
         return possuiItemColado(posicao)
                 ? this.getItemColado(posicao).getImagem()
