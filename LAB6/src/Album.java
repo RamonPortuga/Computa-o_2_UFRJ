@@ -1,3 +1,9 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,12 +40,12 @@ public class Album {
     }
 
     public void receberNovoPacotinho(Pacotinho pacotinho) {
-        Figurinha[] figurinhasDoPacotinho = pacotinho.getFigurinhas();
-        if (figurinhasDoPacotinho.length != this.quantColecionaveisPorPacotinho) {
+        Figurinha[] colecionaveisDoPacotinho = pacotinho.getFigurinhas();
+        if (colecionaveisDoPacotinho.length != this.quantColecionaveisPorPacotinho) {
             return;
         }
 
-        for (Figurinha fig : figurinhasDoPacotinho) {
+        for (Figurinha fig : colecionaveisDoPacotinho) {
             final int posicao = fig.getPosicao();
             if (possuiItemColado(posicao)) {
                 int contRepetidas = this.contRepetidasByPosicao.getOrDefault(posicao, 0);
