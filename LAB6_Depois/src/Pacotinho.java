@@ -32,9 +32,9 @@ public class Pacotinho <T extends Colecionavel>{
         }
     }
 
-    public Figurinha[] getFigurinhas() {
-        Figurinha[] figurinhasArray = new Figurinha[colecionaveis.size()];
-        colecionaveis.toArray(figurinhasArray);
-        return colecionaveis.toArray(figurinhasArray);
+    public Colecionavel[] getColecionaveis() {
+        Colecionavel[] colecionavelArray = new Colecionavel[colecionaveis.size()];
+        colecionaveis.toArray(colecionavelArray);
+        return colecionaveis.toArray(colecionavelArray);
     }
 }

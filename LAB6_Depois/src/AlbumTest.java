@@ -8,12 +8,15 @@ public class AlbumTest {
     private Album albumFigurinhas;
     private Repositorio repositorioFigurinhas;
 
+    private Figurinha fig;
+    private Selo selo;
+
     private static final int TAMANHO_DO_ALBUM = 200;
     private static final int ITENS_POR_PACOTE = 3;
 
     @Before  // roda antes de cada teste
     public void setUp() {
-        this.repositorioFigurinhas = new Repositorio("album_copa2014", TAMANHO_DO_ALBUM);
+        this.repositorioFigurinhas = new Repositorio("album_copa2014", TAMANHO_DO_ALBUM, fig);
         this.albumFigurinhas = new Album(repositorioFigurinhas, ITENS_POR_PACOTE);
     }
 

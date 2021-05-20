@@ -34,7 +34,7 @@ public class Album <T extends Colecionavel> {
     }
 
     public void receberNovoPacotinho(Pacotinho pacotinho) {
-        T[] colecionaveisDoPacotinho = (T[]) pacotinho.getFigurinhas();
+        T[] colecionaveisDoPacotinho = (T[]) pacotinho.getColecionaveis();
         if (colecionaveisDoPacotinho.length != this.quantColecionaveisPorPacotinho) {
             return;
         }
