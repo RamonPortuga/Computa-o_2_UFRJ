@@ -9,7 +9,7 @@
    com cada instância dessas.*/
 
 /*OBS: Professor, coloquei alguns testes só mesmo para demonstrar que funciona,
-espero q não se importe. Inclusive, criei um teste específico. */
+espero q não se importe. Inclusive, criei um teste específico bastante básico. */
 
 import org.junit.Before;
 import org.junit.Test;
