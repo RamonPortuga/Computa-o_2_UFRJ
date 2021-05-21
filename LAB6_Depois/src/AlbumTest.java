@@ -1,3 +1,9 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -95,8 +101,6 @@ public class AlbumTest {
             Pacotinho novoPacotinho = new Pacotinho(
                     this.repositorioFigurinhas, ITENS_POR_PACOTE);  // aleatório
             albumFigurinhas.receberNovoPacotinho(novoPacotinho);
-            //System.out.println(albumFigurinhas.getQuantItensColados());
-            //System.out.println("Ei");
         }
 
         // sanity check

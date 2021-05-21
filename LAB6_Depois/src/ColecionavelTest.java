@@ -1,3 +1,16 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
+/*Adicione um unit test (um único método) onde você terá duas instâncias de Album:
+   uma para Selos e outra para Figurinhas, fazendo algum teste muito básico
+   com cada instância dessas.*/
+
+/*OBS: Professor, coloquei alguns testes só mesmo para demonstrar que funciona,
+espero q não se importe. Inclusive, criei um teste específico. */
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,24 +49,48 @@ public class ColecionavelTest {
     }
 
     @Test
-    public void testarInstanciasDeItensColecionaveis(){
-        /*Adicione um unit test (um único método) onde você terá duas instâncias de Album:
-   uma para Selos e outra para Figurinhas, fazendo algum teste muito básico
-   com cada instância dessas.*/
+    public void testarGetTamanhoAlbum() {
+        assertEquals(TAMANHO_DO_ALBUM, this.albumFigurinhas.getTamanho());
+        assertEquals(TAMANHO_DO_ALBUM, this.albumDeSelos.getTamanho());
+    }
+
+    @Test
+    public void testarPossuiFigurinhaParaFigurinhasAusentes() {
         popularAlbum(new int[] {1, 2, 3});
-        Figurinha figurinha = (Figurinha) albumFigurinhas.getItemColado(2);
 
-        //assertNotNull(figurinha);
+        assertFalse("Não devemos encontrar no álbum figurinhas nunca inseridas",
+                this.albumFigurinhas.possuiItemColado(4));
+        assertFalse("Não devemos encontrar figurinhas de posições não-positivas",
+                this.albumFigurinhas.possuiItemColado(-390));
+        assertFalse("Não devemos encontrar figurinhas maiores do que o tamanho",
+                this.albumFigurinhas.possuiItemColado(TAMANHO_DO_ALBUM + 1));
 
-        //assertEquals(2, figurinha.getPosicao());
+        assertFalse("Não devemos encontrar no álbum figurinhas nunca inseridas",
+                this.albumDeSelos.possuiItemColado(4));
+        assertFalse("Não devemos encontrar figurinhas de posições não-positivas",
+                this.albumDeSelos.possuiItemColado(-390));
+        assertFalse("Não devemos encontrar figurinhas maiores do que o tamanho",
+                this.albumDeSelos.possuiItemColado(TAMANHO_DO_ALBUM + 1));
+    }
+
+    @Test
+    public void testarRejeicaoPacotinhosDeTamanhoErrado() {
+        popularAlbum(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8});
+
+        assertEquals("Pacotes de tamanho distinto do informado na construção " +
+                        "do álbum devem ser rejeitados",
+                0, albumFigurinhas.getQuantItensColados());
+
+        assertEquals("Pacotes de tamanho distinto do informado na construção " +
+                        "do álbum devem ser rejeitados",
+                0, albumDeSelos.getQuantItensColados());
+    }
+
+    @Test
+    public void testarInstanciasDeItensColecionaveis(){
+        popularAlbum(new int[] {1, 2, 3});
 
         assertNull(albumFigurinhas.getItemColado(4));
-
-        Selo selo = (Selo) albumDeSelos.getItemColado(1);
-
-        //assertNotNull(selo);
-
-        //assertEquals(1, selo.getPosicao());
 
         assertNull(albumDeSelos.getItemColado(4));
     }

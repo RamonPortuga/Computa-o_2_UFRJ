@@ -1,3 +1,9 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
 public class Teste {
     public static void main (String [] args){
         final int TAMANHO_DO_ALBUM = 200;

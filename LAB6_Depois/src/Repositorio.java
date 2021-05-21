@@ -1,3 +1,9 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,32 +28,6 @@ public class Repositorio <T extends Colecionavel> {
             todosOsColecionaveis.add((T) selo);
         }
     }
-
-    /*public Repositorio(String sufixoUrlImagens, int quantColecinaveis, Colecionavel tipo) {
-        if (tipo instanceof Figurinha){
-            todosOsColecionaveis = new ArrayList<>(quantColecinaveis);
-            for (int i = 1; i <= quantColecinaveis; i++) {
-                Colecionavel fig = new Figurinha(i, PREFIXO_URL_IMAGENS + sufixoUrlImagens);
-                todosOsColecionaveis.add((T) fig);
-            }
-        }
-        else if (tipo instanceof Selo){
-            todosOsColecionaveis = new ArrayList<>(quantColecinaveis);
-            for (int i = 1; i <= quantColecinaveis; i++) {
-                Colecionavel selo = new Selo(i, PREFIXO_URL_IMAGENS + sufixoUrlImagens);
-                todosOsColecionaveis.add((T) selo);
-            }
-        }
-        //System.out.println(todosOsColecionaveis.size());
-    }*/
-
-    /*public Repositorio(String sufixoUrlImagens, int quantColecinaveis) {
-        todosOsColecionaveis = new ArrayList<>(quantColecinaveis);
-        for (int i = 1; i <= quantColecinaveis; i++) {
-            Colecionavel fig = new Figurinha(i, PREFIXO_URL_IMAGENS + sufixoUrlImagens);
-            todosOsColecionaveis.add((T) fig);
-        }
-    }*/
 
     public int getTotalColecionavel() {
         return this.todosOsColecionaveis.size();
