@@ -9,7 +9,10 @@ public class Teste {
         //set.addAll (Arrays.asList(palavras));
         List arrayList = new ArrayList<>();
         arrayList.add("João");
+        arrayList.add("João");
         arrayList.add("Augusto");
+        Collections.sort(arrayList);
+        arrayList.remove("João");
         set.addAll(arrayList);
         System.out.println(set);
     }

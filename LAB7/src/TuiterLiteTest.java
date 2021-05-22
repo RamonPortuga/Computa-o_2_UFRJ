@@ -30,18 +30,10 @@ public class TuiterLiteTest {
                 this.usuario, new Usuario("Fulano de Tal", "fulano@teste.com"));
     }
 
-    /*@Test
+    @Test
     public void testeAutorDoTuite()
             throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException {
         Tuite tuite = tuiterLite.tuitarAlgo(usuario, "Testando");
-        assertEquals("O tuíte deve retornar corretamente seu autor",
-                usuario, tuite.getAutor());
-    }*/
-
-    @Test
-    public void testeAutorDoTuite() {
-        Tuite tuite = tuiterLite.tuitarAlgo(usuario, "Testando");
-        System.out.println(tuiterLite.tuitarAlgo(usuario, "Testando"));
         assertEquals("O tuíte deve retornar corretamente seu autor",
                 usuario, tuite.getAutor());
     }

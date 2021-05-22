@@ -13,7 +13,10 @@ public class TuiterLite {
 
     public static int TAMANHO_MAXIMO_TUITES = 120;
 
+    private List arrayListTodasAsHashtags = new ArrayList<>();
+
     private Map<String, Usuario> registroDeUsuarios = new HashMap<>();
+    private Map<String, Integer> frequenciaHashtags = new HashMap<>();
 
     private Set <String> todasAsHashtags = new HashSet<String>();
 
@@ -46,18 +49,17 @@ public class TuiterLite {
      */
     public Tuite tuitarAlgo(Usuario usuario, String texto) {
         if (texto.length() <= TAMANHO_MAXIMO_TUITES){
-            //String[] vetor_hashtags = new String[120];
-            List arrayListHashtags = new ArrayList<>();
+            List arrayListHashtagsDoTuite = new ArrayList<>();
             Set <String> hashtags = new HashSet<String>();
             String[] palavras = new String[120];
             palavras = texto.split(" ");
             for (int i = 0; i < palavras.length; i++){
                 if (palavras[i].contains("#") == true){
-                    arrayListHashtags.add(palavras[i]);
+                    arrayListTodasAsHashtags.add(palavras[i]);
+                    arrayListHashtagsDoTuite.add(palavras[i]);
                 }
             }
-            hashtags.addAll(arrayListHashtags);
-            todasAsHashtags.addAll(arrayListHashtags);
+            hashtags.addAll(arrayListHashtagsDoTuite);
             Tuite tuite = new Tuite(usuario, texto, hashtags);
             return tuite;
         }
@@ -70,15 +72,25 @@ public class TuiterLite {
      * @return A hashtag mais comum, ou null se nunca uma hashtag houver sido tuitada.
      */
     public String getHashtagMaisComum() {
-        //Fazer um while onde vai porcurar as ocorrências de cada hashtag e fazer a
-        // comparação mais idiota possível para saber a frequência
-        // ToDo IMPLEMENT ME!!!
-        List arrayList = new ArrayList<>();
-        arrayList = (List) todasAsHashtags;
-        int i = 0;
-        while (i > 0){
-
+        System.out.println(arrayListTodasAsHashtags);
+        todasAsHashtags.addAll(arrayListTodasAsHashtags);
+        if (arrayListTodasAsHashtags.isEmpty()){
+            return null;
         }
-        return null;
+        int maiorFrequencia = 0;
+        String hashtagMaisFrequente = "banana";
+        Collections.sort(arrayListTodasAsHashtags);
+        int i = 0;
+        while (arrayListTodasAsHashtags.size() != 0 && i < arrayListTodasAsHashtags.size()){
+            int primeiroAparicaoHashtag = arrayListTodasAsHashtags.indexOf(arrayListTodasAsHashtags.get(i));
+            int ultimaAparicaoHashtag = arrayListTodasAsHashtags.lastIndexOf(arrayListTodasAsHashtags.get(i));
+            int frequencia = ultimaAparicaoHashtag - primeiroAparicaoHashtag;
+            if (frequencia > maiorFrequencia){
+                hashtagMaisFrequente = (String) arrayListTodasAsHashtags.get(i);
+                maiorFrequencia = frequencia;
+            }
+            i++;
+        }
+        return hashtagMaisFrequente;
     }
 }

@@ -15,7 +15,6 @@ public class Tuite {
     }
 
     public void anexarAlgo(Object anexo) {
-        // ToDo IMPLEMENT ME!!!!
         this.anexo = anexo;
     }
 
