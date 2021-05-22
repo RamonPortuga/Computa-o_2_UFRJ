@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 
 public class Tuite {
@@ -15,6 +16,7 @@ public class Tuite {
 
     public void anexarAlgo(Object anexo) {
         // ToDo IMPLEMENT ME!!!!
+        this.anexo = anexo;
     }
 
     public Object getAnexo() {
