@@ -1,6 +1,10 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Usuario {
 
