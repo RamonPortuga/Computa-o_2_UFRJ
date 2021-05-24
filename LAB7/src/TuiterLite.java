@@ -27,14 +27,6 @@ public class TuiterLite {
      * @return O Usuario criado.
      */
     public Usuario cadastrarUsuario(String nome, String email) {  // throws UsuarioJaExisteException {
-        // ToDo IMPLEMENT ME!!!
-        /*if (registroDeUsuarios.containsKey(email) == false){
-            Usuario usuario = new Usuario(nome, email);
-            registroDeUsuarios.put(email, usuario);
-        }
-        else{
-
-        }*/
         Usuario usuario = new Usuario(nome, email);
         return usuario;
     }
@@ -55,6 +47,7 @@ public class TuiterLite {
             palavras = texto.split(" ");
             for (int i = 0; i < palavras.length; i++){
                 if (palavras[i].contains("#") == true){
+                    palavras[i] = palavras[i].replaceAll("#+", "#");
                     arrayListTodasAsHashtags.add(palavras[i]);
                     arrayListHashtagsDoTuite.add(palavras[i]);
                 }
@@ -72,7 +65,6 @@ public class TuiterLite {
      * @return A hashtag mais comum, ou null se nunca uma hashtag houver sido tuitada.
      */
     public String getHashtagMaisComum() {
-        System.out.println(arrayListTodasAsHashtags);
         todasAsHashtags.addAll(arrayListTodasAsHashtags);
         if (arrayListTodasAsHashtags.isEmpty()){
             return null;
