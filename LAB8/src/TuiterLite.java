@@ -1,5 +1,7 @@
 import java.util.*;
 
+import static org.junit.Assert.fail;
+
 /**
  *  Esta classe implementa um sistema de mensagens curtas estilo Twitter.
  *  É preciso cadastrar um usuário, identificado pelo seu e-mail, para que tuítes possam ser feitos.
@@ -52,7 +54,46 @@ public class TuiterLite {
      *
      * PS.: Se o texto exceder o limite pré-definido, ou o usuário não estiver cadastrado, return null
      */
-    public Tuite tuitarAlgo(Usuario usuario, String texto) throws UsuarioDesconhecidoException {
+    public Tuite tuitarAlgo(Usuario usuario, String texto) throws UsuarioDesconhecidoException, TamanhoMaximoExcedidoException, TamanhoZeroException {
+
+        if (texto == null && usuario == null){
+            throw new IllegalArgumentException("Usuário e texto se encontram nulos");
+        }
+        else if (usuario == null){
+            throw new IllegalArgumentException("O Usuário se encontra nulo");
+        }
+        else if(texto == null){
+            throw new IllegalArgumentException("O texto enviado se encontra nulo");
+        }
+        else if (texto.length() > TAMANHO_MAXIMO_TUITES){
+            throw new TamanhoMaximoExcedidoException(texto.length());
+        }
+        else if (texto.length() == 0){
+            throw new TamanhoZeroException();
+        }
+        else if (!this.usuarioByEmail.containsKey(usuario.getEmail())){
+            System.out.println("Ei");
+            throw new UsuarioDesconhecidoException("Usuario não foi reconhecido pelo sistema");
+        }
+        /* else if (texto.length() > TAMANHO_MAXIMO_TUITES){
+            try {
+                fail("Uma EstoqueInsuficienteException deve ser lançada quando a " +
+                        "quantidade desejada for maior do que a quantidade em estoque");
+                if (texto.length() > TAMANHO_MAXIMO_TUITES){
+                    fail("Uma EstoqueInsuficienteException deve ser lançada quando a " +
+                            "quantidade desejada for maior do que a quantidade em estoque");
+                }
+            } catch (TamanhoMaximoExcedidoException e) {
+                //System.out.println(e.getMessage());
+            }
+        }*/
+
+        //ToDo Implement Me!!!
+
+        //Falta fazer referente a:
+        //texto.length() == 0
+        //texto.length() > TAMANHO_MAXIMO_TUITES
+        //!this.usuarioByEmail.containsKey(usuario.getEmail()))
 
         if (texto == null || texto.length() == 0 || texto.length() > TAMANHO_MAXIMO_TUITES ||
                 usuario == null || !this.usuarioByEmail.containsKey(usuario.getEmail())) {
