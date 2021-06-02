@@ -86,7 +86,6 @@ public class TuiterLiteTest {
                 objeto, tuite.getAnexo());
     }
 
-    //ToDo Implement Me!!!
     @Test
     public void testeApenasUmTipoPermitidoComoAnexo()
             throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException, UsuarioJaExisteException, TamanhoZeroException {
