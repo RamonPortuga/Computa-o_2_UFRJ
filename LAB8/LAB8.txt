@@ -1,3 +1,9 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
 - Modifique o if inicial do método tuitarAlgo()
   para que uma checked exception específica seja lançada para cada
   uma daquelas situações inesperadas. A única exceção seria se o

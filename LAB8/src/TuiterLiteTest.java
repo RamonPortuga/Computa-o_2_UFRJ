@@ -1,3 +1,9 @@
+/**
+ * Nome: Ramon Oliveira de Azevedo
+ * DRE: 120023419
+ * 2° Período - Ciências da Computação
+ */
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -195,8 +201,8 @@ public class TuiterLiteTest {
 
     @Test(expected = UsuarioDesconhecidoException.class)
     public void testarUsuarioDesconhecidoException() throws UsuarioDesconhecidoException, TamanhoMaximoExcedidoException, TamanhoZeroException {
-        Usuario usuarioDesconhecido = new Usuario("Fulano Desconhecido", "desconhecido@teste.com");
-        String texto = "Sou um Tuite!";
+        Usuario usuarioDesconhecido = new Usuario("Apenas um Rapaz Latino Americano", "belchior@teste.com");
+        String texto = "Sou um Tuite Poético!";
         tuiterLite.tuitarAlgo(usuarioDesconhecido,texto);
     }
 
