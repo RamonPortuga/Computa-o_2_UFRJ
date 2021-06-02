@@ -16,7 +16,7 @@ public class TamanhoMaximoExcedidoException extends Exception {
     }
 
     public TamanhoMaximoExcedidoException(int tamanhoTexto){
-        super("Tamanho máximo do Tuite de " + tamanhoTexto + " caracteres foi excedida.");
+        super("Tamanho máximo do Tuite de " + tamanhoTexto + " caracteres foi excedido.");
         this.tamanhoTexto = tamanhoTexto;
     }
 

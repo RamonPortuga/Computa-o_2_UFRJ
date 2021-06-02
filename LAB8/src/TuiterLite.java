@@ -78,7 +78,7 @@ public class TuiterLite <T>{
             throw new TamanhoZeroException();
         }
         else if (!this.usuarioByEmail.containsKey(usuario.getEmail())){
-            throw new UsuarioDesconhecidoException("Usuario não foi reconhecido pelo sistema");
+            throw new UsuarioDesconhecidoException("Usuário não foi reconhecido pelo sistema");
         }
 
         Set<String> hashtags = obterHashtags(texto);

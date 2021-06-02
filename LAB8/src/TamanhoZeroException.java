@@ -9,6 +9,6 @@ public class TamanhoZeroException extends Exception {
         super(message);
     }
     public TamanhoZeroException() {
-        super("Tamanho do Tuite Igual a Zero");
+        super("Tamanho do Tuite é Igual a Zero");
     }
 }
