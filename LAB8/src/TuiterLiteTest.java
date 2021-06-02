@@ -38,16 +38,6 @@ public class TuiterLiteTest {
                 usuario, tuite.getAutor());
     }
 
-//    @Test
-//    public void testeTuiteDeUsuarioDesconhecido() throws TamanhoMaximoExcedidoException {
-//        try {
-//            tuiterLite.tuitarAlgo(new Usuario("Usuário Desconhedido", "unknown@void.com"), "Testando");
-//            fail("Uma UsuarioDesconhecidoException deve ser lançada caso o autor não seja usuário cadastrado");
-//        } catch (UsuarioDesconhecidoException e) {
-//            // ok
-//        }
-//    }
-
     @Test
     public void testeTamanhoTuite() throws UsuarioDesconhecidoException, TamanhoMaximoExcedidoException, TamanhoZeroException {
         // testaremos para 100 tamanhos diferentes, todos maiores do que o máximo permitido
@@ -61,21 +51,18 @@ public class TuiterLiteTest {
             }
             String texto = sb.toString();
 
-            /*try {
+            try {
                 tuiterLite.tuitarAlgo(usuario, texto);
                 fail("Um tuite maior do que o tamanho máximo deve lançar uma TamanhoMaximoExcedidoException");
 
-            } catch (TamanhoMaximoExcedidoException | TamanhoZeroException e) {
+            } catch (TamanhoMaximoExcedidoException e) {
                 assertEquals("A exceção deve comunicar corretamente o tamanho do texto que se tentou tuitar",
                         tamanho, e.getTamanhoTexto());
-            }*/
-            assertNull("Não deve ser possível tuitar algocom otamanho maior do que " +
-                    "o máximo permitido", tuiterLite.tuitarAlgo(usuario, texto));
+            }
         }
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testeAnexo()
             throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException, TamanhoZeroException {
 
@@ -94,9 +81,9 @@ public class TuiterLiteTest {
     }
 
     //ToDo Implement Me!!!
-    /*@Test
+    @Test
     public void testeApenasUmTipoPermitidoComoAnexo()
-            throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException, UsuarioJaExisteException {
+            throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException, UsuarioJaExisteException, TamanhoZeroException {
 
         // vamos criar um outro TuiterLite aqui, especificando que ele deverá se relacionar com o tipo Image
         TuiterLite<Image> tuiterLiteQueAceitaApenasImagensComoAnexo = new TuiterLite<>();
@@ -113,7 +100,7 @@ public class TuiterLiteTest {
 //        tuite.anexarAlgo(usuario);       // essa linha, se fosse descomentada, daria erro de compilação
 //        tuite.anexarAlgo("1234");        // essa linha, se fosse descomentada, daria erro de compilação
 //        tuite.anexarAlgo(new Object());  // essa linha, se fosse descomentada, daria erro de compilação
-    }*/
+    }
 
     @Test
     public void testeHashtags()
@@ -150,41 +137,6 @@ public class TuiterLiteTest {
                 tuite.getHashtags().contains("###LAB7"));
     }
 
-//    @Test
-//    public void testeTipoUsuario() throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException {
-//        // sanity check
-//        assertEquals("Um usuário sem nenhum tuite deve estar no nível INICIANTE",
-//                NivelUsuario.INICIANTE, usuario.getNivel());
-//
-//        // vamos tuitar várias vezes com o mesmo usuário, mas não ainda a ponto de promovê-lo ao próximo nível
-//        for (int i = 1; i < NivelUsuario.SENIOR.getMinTuites(); i++) {
-//            tuiterLite.tuitarAlgo(usuario, "Oi!");
-//        }
-//
-//        // vamos verificar que o usuário ainda é INICIANTE
-//        assertEquals("Um usuário não pode ser promovido antes de ter feito 100 tuítes",
-//                NivelUsuario.INICIANTE, usuario.getNivel());
-//
-//        // agora vamos produzir mais um tuite daquele usuário
-//        tuiterLite.tuitarAlgo(usuario, "Oi! Vou ser promovido!");
-//
-//        // verifique a promoção ao nível seguinte
-//        assertEquals("O usuário deve ser promovido automaticamente a SENIOR quando atinge a marca de 100 tuítes",
-//                NivelUsuario.SENIOR, usuario.getNivel());
-//
-//        // vamos agora passá-lo para o próximo nível
-//        for (int i = 1; i <= NivelUsuario.NINJA.getMinTuites() - NivelUsuario.SENIOR.getMinTuites(); i++) {
-//            tuiterLite.tuitarAlgo(usuario, "Para o alto e avante!");
-//        }
-//
-//        // verifique a promoção ao nível seguinte
-//        assertEquals("O usuário deve ser promovido automaticamente a NINJA quando atinge a marca de 500 tuítes",
-//                NivelUsuario.NINJA, usuario.getNivel());
-//    }
-//
-    /////
-    /////   ATENÇÃO: Este teste deve rodar rapidamente (poucos segundos)
-    /////
     @Test
     public void testePerformanceContabilizacaoDasHashtags()
             throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException, TamanhoZeroException {
@@ -219,59 +171,6 @@ public class TuiterLiteTest {
             }
         }
     }
-
-    /*@Test
-    public void testeUsuarioOuTextosNulosNoTuite() throws UsuarioDesconhecidoException {
-        //Testar Usuário e texto sendo igual a null
-        assertEquals("O tratamento da exceção não foi feito corretamente",
-                "Usuário e texto se encontram nulos", tuiterLite.tuitarAlgo(null,
-                        null));
-
-        //Testar Usuário igual a null
-        assertEquals("O tratamento da exceção não foi feito corretamente",
-                "O Usuário se encontra nulo", tuiterLite.tuitarAlgo(null,
-                        "Banana"));
-
-        //Testar Texto igual a null
-        assertEquals("O tratamento da exceção não foi feito corretamente",
-                "O texto enviado se encontra nulo", tuiterLite.tuitarAlgo(usuario,
-                        null));
-    }*/
-
-    /*@Test
-    public void testarCheckedExceptions() throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException {
-        try {
-            String texto = "Mas eu não estou interessado / Em nenhuma teoria / Em nenhuma " +
-                    "fantasia / Nem no algo mais / Longe o profeta do terror / Que a laranja mecânica " +
-                    "anuncia / Amar e mudar as coisas/Me interessa mais";
-
-            tuiterLite.tuitarAlgo(usuario, texto);
-
-            fail("Um TamanhoMaximoExcedidoException deve ser lançado quando o " +
-                    "tamanho máximo do Tuite for ultrapassado");
-
-        } catch (TamanhoMaximoExcedidoException e) {
-            // passe o teste por vacuidade, ou seja, chegando ao fim naturalmente
-        }
-
-        try{
-            String texto = "Era só mais um Silva que a estrela não brilha / Ele era funkeiro, mas era pai de família";
-           //usuario = tuiterLite.cadastrarUsuario("Ramon", "ramon@teste.com");
-            usuario = tuiterLite.cadastrarUsuario("Fulano", "fulano@teste.com");
-
-            tuiterLite.tuitarAlgo(usuario, texto);
-
-            fail("Um UsuarioDesconhecidoException deve ser lançado quando o " +
-                    "Usuário não for reconhecido pelo sistema");
-        }
-        catch (UsuarioDesconhecidoException e){
-            // passe o teste por vacuidade, ou seja, chegando ao fim naturalmente
-        }
-
-        //assertEquals("Tamanho máximo do Tuite foi excedido",
-        //       "O texto enviado se encontra nulo", tuiterLite.tuitarAlgo(usuario,
-        //                texto));
-    }*/
 
     @Test(expected = TamanhoMaximoExcedidoException.class)
     public void testarTamanhoMaximoExcedidoException() throws TamanhoMaximoExcedidoException, UsuarioDesconhecidoException, TamanhoZeroException {

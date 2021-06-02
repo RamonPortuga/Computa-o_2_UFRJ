@@ -11,7 +11,7 @@ import static org.junit.Assert.fail;
  *  Os tuítes podem conter, além da mensagem de texto, um anexo qualquer.
  *  Há um método para retornar, a qualquer momento, qual a hashtag mais usada em toda a história do sistema.
  */
-public class TuiterLite {
+public class TuiterLite <T>{
 
     public static int TAMANHO_MAXIMO_TUITES = 120;
 
@@ -34,10 +34,10 @@ public class TuiterLite {
      * @param email O e-mail do usuário (precisa ser único no sistema).
      * @return O Usuario criado.
      */
-    public Usuario cadastrarUsuario(String nome, String email) {  // throws UsuarioJaExisteException {
+    public Usuario cadastrarUsuario(String nome, String email) throws UsuarioJaExisteException {  // throws UsuarioJaExisteException {
         Usuario usuarioPreExistente = this.usuarioByEmail.get(email);
         if (usuarioPreExistente != null) {
-            return usuarioPreExistente;
+            throw new UsuarioJaExisteException(usuarioPreExistente.getNome());
         }
 
         Usuario novoUsuario = new Usuario(nome, email);
@@ -72,32 +72,7 @@ public class TuiterLite {
             throw new TamanhoZeroException();
         }
         else if (!this.usuarioByEmail.containsKey(usuario.getEmail())){
-            System.out.println("Ei");
             throw new UsuarioDesconhecidoException("Usuario não foi reconhecido pelo sistema");
-        }
-        /* else if (texto.length() > TAMANHO_MAXIMO_TUITES){
-            try {
-                fail("Uma EstoqueInsuficienteException deve ser lançada quando a " +
-                        "quantidade desejada for maior do que a quantidade em estoque");
-                if (texto.length() > TAMANHO_MAXIMO_TUITES){
-                    fail("Uma EstoqueInsuficienteException deve ser lançada quando a " +
-                            "quantidade desejada for maior do que a quantidade em estoque");
-                }
-            } catch (TamanhoMaximoExcedidoException e) {
-                //System.out.println(e.getMessage());
-            }
-        }*/
-
-        //ToDo Implement Me!!!
-
-        //Falta fazer referente a:
-        //texto.length() == 0
-        //texto.length() > TAMANHO_MAXIMO_TUITES
-        //!this.usuarioByEmail.containsKey(usuario.getEmail()))
-
-        if (texto == null || texto.length() == 0 || texto.length() > TAMANHO_MAXIMO_TUITES ||
-                usuario == null || !this.usuarioByEmail.containsKey(usuario.getEmail())) {
-            return null;
         }
 
         Set<String> hashtags = obterHashtags(texto);
@@ -157,7 +132,4 @@ public class TuiterLite {
     private static boolean isAlphanumeric(char c) {
         return Character.isAlphabetic(c) || Character.isDigit(c);
     }
-
-
-
 }
